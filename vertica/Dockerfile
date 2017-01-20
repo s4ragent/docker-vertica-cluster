@@ -16,7 +16,7 @@ RUN echo "dbadmin -       nice    0" >> /etc/security/limits.conf && echo "dbadm
 USER root
 RUN echo 'root:password' | chpasswd &&  'dbadmin:password'  | chpasswd 
 RUN mkdir /var/run/sshd && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
-    sed -i -e 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+    echo 'UseDNS no' >> /etc/ssh/sshd_config
 
 RUN mkdir /tmp/.python-eggs && chown -R dbadmin /tmp/.python-eggs
 ENV PYTHON_EGG_CACHE /tmp/.python-eggs
