@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 # Update the image
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y openssh-server openssh-client mcelog gdb sysstat dialog && apt-get clean
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y openssh-server openssh-client mcelog gdb pstack sysstat dialog && apt-get clean
 
 # Set locale for all system 
 RUN locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales 
