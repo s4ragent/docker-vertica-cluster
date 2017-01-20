@@ -14,7 +14,7 @@ RUN groupadd -r verticadba && useradd -r -m -g verticadba dbadmin && chsh -s /bi
 RUN echo "dbadmin -       nice    0" >> /etc/security/limits.conf && echo "dbadmin -       nofile  65536" >> /etc/security/limits.conf
  
 USER root
-RUN echo 'root:password' | chpasswd &&  'dbadmin:password'  | chpasswd 
+RUN echo 'root:password' | chpasswd &&  echo 'dbadmin:password'  | chpasswd 
 RUN mkdir /var/run/sshd && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
     echo 'UseDNS no' >> /etc/ssh/sshd_config
 
