@@ -28,13 +28,6 @@ RUN chsh -s /bin/bash root
 RUN echo "dbadmin -       nice    0" >> /etc/security/limits.conf
 RUN echo "dbadmin -       nofile  65536" >> /etc/security/limits.conf
 
-# Install package 
-ADD files/vertica_7.2.1-0_amd64.deb /tmp/vertica.deb
-ADD files/vertica-console_7.2.2-0_amd64.deb /tmp/vertica-console.deb
-RUN dpkg -i /tmp/vertica.deb
-
-# But that's in theory, and for now, this seems sufficient.
-
 # Test DB creation as dbuser
 USER dbadmin
 RUN mkdir /home/dbadmin/user01db
@@ -54,6 +47,4 @@ ENV PYTHON_EGG_CACHE /tmp/.python-eggs
 ENV VERTICADATA /home/dbadmin/user01db
 
 ADD files/docker-entrypoint.sh /home/dbadmin
-ADD files/create_user01schema.sql /home/dbadmin
-ADD files/vertica-jdbc-7.2.jar /opt/vertica/packages/kafka/lib/vertica-jdbc-7.2.jar
 
