@@ -4,7 +4,8 @@ FROM ubuntu:14.04
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y openssh-server openssh-client mcelog gdb pstack sysstat dialog && apt-get clean
 
 # Set locale for all system 
-RUN locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales 
+RUN locale-gen --purge en_US.UTF-8 ;\
+dpkg-reconfigure -f noninteractive locales && /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Vertica requires bash as default shell
 ENV SHELL "/bin/bash"
